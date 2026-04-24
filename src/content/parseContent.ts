@@ -39,6 +39,11 @@ import type {
   FooterContent,
   FooterColumnContent,
   FooterLinkContent,
+  HeroBannerContent,
+  ProductGridContent,
+  ProductIconContent,
+  ContactSectionContent,
+  PromotionCardContent,
 } from '.'
 
 // Recursive parsers require lazy loading
@@ -61,6 +66,11 @@ export const parseContent: Parser<Content> = lazy(() =>
     parseFooterContent,
     parseFooterColumnContent,
     parseFooterLinkContent,
+    parseHeroBannerContent,
+    parseProductGridContent,
+    parseProductIconContent,
+    parseContactSectionContent,
+    parsePromotionCardContent,
   ),
 )
 
@@ -296,4 +306,55 @@ export const parseFooterContent = object<FooterContent>({
   columns: withDefault(array(parseFooterColumnContent), []),
   bottomText: withDefault(parseString, undefined),
   bottom_text: withDefault(parseString, undefined),
+})
+
+export const parseHeroBannerContent = object<HeroBannerContent>({
+  component: equals('heroBanner'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  image: withDefault(parseAssetContent, undefined),
+  headline: parseString,
+  subtext: withDefault(parseString, undefined),
+  ctaText: withDefault(parseString, undefined),
+  ctaLink: withDefault(parseLinkContent, undefined),
+})
+
+export const parseProductIconContent = object<ProductIconContent>({
+  component: equals('productIcon'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  icon: withDefault(parseAssetContent, undefined),
+  title: parseString,
+  link: withDefault(parseLinkContent, undefined),
+  highlighted: withDefault(equals(true), false),
+})
+
+export const parseProductGridContent = object<ProductGridContent>({
+  component: equals('productGrid'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  title: withDefault(parseString, undefined),
+  products: withDefault(array(parseProductIconContent), []),
+})
+
+export const parseContactSectionContent = object<ContactSectionContent>({
+  component: equals('contactSection'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  title: withDefault(parseString, undefined),
+  lineOa: withDefault(parseString, undefined),
+  line_oa: withDefault(parseString, undefined),
+  phone: withDefault(parseString, undefined),
+  email: withDefault(parseString, undefined),
+})
+
+export const parsePromotionCardContent = object<PromotionCardContent>({
+  component: equals('promotionCard'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  image: withDefault(parseAssetContent, undefined),
+  title: parseString,
+  description: withDefault(parseString, undefined),
+  link: withDefault(parseLinkContent, undefined),
+  badge: withDefault(parseString, undefined),
 })

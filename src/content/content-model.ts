@@ -25,6 +25,11 @@ export type Content =
   | FooterContent
   | FooterColumnContent
   | FooterLinkContent
+  | HeroBannerContent
+  | ProductGridContent
+  | ProductIconContent
+  | ContactSectionContent
+  | PromotionCardContent
 
 /**
  * When the parsing of a component fails, fall back fack to this component.
@@ -173,4 +178,45 @@ export type FooterLinkContent = BlockContent<{
   component: 'footerLink'
   label: string
   link?: LinkContent
+}>
+
+export type HeroBannerContent = BlockContent<{
+  component: 'heroBanner'
+  image?: AssetContent
+  headline: string
+  subtext?: string
+  ctaText?: string
+  ctaLink?: LinkContent
+}>
+
+export type ProductGridContent = BlockContent<{
+  component: 'productGrid'
+  title?: string
+  products: ProductIconContent[]
+}>
+
+export type ProductIconContent = BlockContent<{
+  component: 'productIcon'
+  icon?: AssetContent
+  title: string
+  link?: LinkContent
+  highlighted?: boolean
+}>
+
+export type ContactSectionContent = BlockContent<{
+  component: 'contactSection'
+  title?: string
+  lineOa?: string
+  line_oa?: string
+  phone?: string
+  email?: string
+}>
+
+export type PromotionCardContent = BlockContent<{
+  component: 'promotionCard'
+  image?: AssetContent
+  title: string
+  description?: string
+  link?: LinkContent
+  badge?: string
 }>

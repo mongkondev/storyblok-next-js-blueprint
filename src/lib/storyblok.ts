@@ -13,6 +13,11 @@ import NavDropdownItem from '../storyblok/NavDropdownItem'
 import Footer from '../storyblok/Footer'
 import FooterColumn from '../storyblok/FooterColumn'
 import FooterLink from '../storyblok/FooterLink'
+import HeroBanner from '../storyblok/HeroBanner'
+import ProductGrid from '../storyblok/ProductGrid'
+import ProductIcon from '../storyblok/ProductIcon'
+import ContactSection from '../storyblok/ContactSection'
+import PromotionCard from '../storyblok/PromotionCard'
 import { apiPlugin, storyblokInit } from '@storyblok/react/rsc'
 
 export const getStoryblokApi = storyblokInit({
@@ -34,6 +39,11 @@ export const getStoryblokApi = storyblokInit({
     footer: Footer,
     footerColumn: FooterColumn,
     footerLink: FooterLink,
+    heroBanner: HeroBanner,
+    productGrid: ProductGrid,
+    productIcon: ProductIcon,
+    contactSection: ContactSection,
+    promotionCard: PromotionCard,
   },
   apiOptions: {
     /** Set the correct region for your space. Learn more: https:/www.storyblok.com/docs/packages/storyblok-js#example-region-parameter */

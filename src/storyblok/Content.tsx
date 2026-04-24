@@ -10,6 +10,11 @@ import type {
   TeamMembersContent,
   CardContent,
   ButtonContent,
+  HeroBannerContent,
+  ProductGridContent,
+  ProductIconContent,
+  ContactSectionContent,
+  PromotionCardContent,
 } from '../content'
 import TeamMembers from './TeamMembers'
 import Page from './Page'
@@ -20,6 +25,11 @@ import Hero from './Hero'
 import Tabs from './Tabs'
 import Card from './Card'
 import Button from './Button'
+import HeroBanner from './HeroBanner'
+import ProductGrid from './ProductGrid'
+import ProductIcon from './ProductIcon'
+import ContactSection from './ContactSection'
+import PromotionCard from './PromotionCard'
 
 export type ContentProps = {
   blok: Content
@@ -54,6 +64,21 @@ function Content(props: ContentProps) {
       ) : null}
       {props.blok.component === 'button' ? (
         <Button blok={props.blok as ButtonContent} />
+      ) : null}
+      {props.blok.component === 'heroBanner' ? (
+        <HeroBanner blok={props.blok as HeroBannerContent} />
+      ) : null}
+      {props.blok.component === 'productGrid' ? (
+        <ProductGrid blok={props.blok as ProductGridContent} />
+      ) : null}
+      {props.blok.component === 'productIcon' ? (
+        <ProductIcon blok={props.blok as ProductIconContent} />
+      ) : null}
+      {props.blok.component === 'contactSection' ? (
+        <ContactSection blok={props.blok as ContactSectionContent} />
+      ) : null}
+      {props.blok.component === 'promotionCard' ? (
+        <PromotionCard blok={props.blok as PromotionCardContent} />
       ) : null}
     </>
   )

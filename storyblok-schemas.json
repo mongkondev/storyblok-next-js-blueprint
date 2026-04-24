@@ -122,6 +122,118 @@
       },
       "is_root": false,
       "is_nestable": true
+    },
+    {
+      "name": "heroBanner",
+      "display_name": "Hero Banner",
+      "schema": {
+        "image": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "headline": {
+          "type": "text",
+          "required": true
+        },
+        "subtext": {
+          "type": "text"
+        },
+        "cta_text": {
+          "type": "text"
+        },
+        "cta_link": {
+          "type": "multilink",
+          "allow_target_blank": true
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    },
+    {
+      "name": "productGrid",
+      "display_name": "Product Grid",
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "products": {
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_whitelist": ["productIcon"]
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    },
+    {
+      "name": "productIcon",
+      "display_name": "Product Icon",
+      "schema": {
+        "icon": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "title": {
+          "type": "text",
+          "required": true
+        },
+        "link": {
+          "type": "multilink",
+          "allow_target_blank": true
+        },
+        "highlighted": {
+          "type": "boolean"
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    },
+    {
+      "name": "contactSection",
+      "display_name": "Contact Section",
+      "schema": {
+        "title": {
+          "type": "text"
+        },
+        "line_oa": {
+          "type": "text"
+        },
+        "phone": {
+          "type": "text"
+        },
+        "email": {
+          "type": "text"
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    },
+    {
+      "name": "promotionCard",
+      "display_name": "Promotion Card",
+      "schema": {
+        "image": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "title": {
+          "type": "text",
+          "required": true
+        },
+        "description": {
+          "type": "text"
+        },
+        "link": {
+          "type": "multilink",
+          "allow_target_blank": true
+        },
+        "badge": {
+          "type": "text"
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
     }
   ],
   "pageFields": {
