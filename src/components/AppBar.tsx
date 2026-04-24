@@ -27,12 +27,12 @@ const menuItems = [
   },
   {
     label: 'บริการลูกค้า',
-    href: '#',
+    href: '/pages/services',
     dropdown: [],
   },
   {
     label: 'ติดต่อเรา',
-    href: '#',
+    href: '/pages/about',
     dropdown: [],
   },
 ]
