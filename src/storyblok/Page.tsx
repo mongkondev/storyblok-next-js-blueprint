@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { storyblokEditable } from '@storyblok/react/rsc'
+import AppBarView from '../components/AppBar'
+import FooterView from '../components/Footer'
 import type { PageContent } from '../content'
 import Content from './Content'
 import AppBar from './AppBar'
@@ -17,7 +19,9 @@ function Page(props: PageProps) {
     >
       {props.blok.header ? (
         <AppBar blok={props.blok.header} />
-      ) : null}
+      ) : (
+        <AppBarView />
+      )}
       <main className="flex-1">
         {props.blok.body?.map((content, index) => (
           <Content
@@ -28,7 +32,9 @@ function Page(props: PageProps) {
       </main>
       {props.blok.footer ? (
         <Footer blok={props.blok.footer} />
-      ) : null}
+      ) : (
+        <FooterView />
+      )}
     </div>
   )
 }
