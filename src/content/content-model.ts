@@ -30,6 +30,7 @@ export type Content =
   | ProductIconContent
   | ContactSectionContent
   | PromotionCardContent
+  | SplitHeroContent
 
 /**
  * When the parsing of a component fails, fall back fack to this component.
@@ -219,4 +220,17 @@ export type PromotionCardContent = BlockContent<{
   description?: string
   link?: LinkContent
   badge?: string
+}>
+
+export type SplitHeroContent = BlockContent<{
+  component: 'splitHero'
+  video_url?: string
+  left_logo?: AssetContent
+  left_brand?: string
+  left_tagline?: string
+  left_cta_text?: string
+  left_cta_link?: LinkContent
+  title?: string
+  description?: string
+  products: ProductIconContent[]
 }>

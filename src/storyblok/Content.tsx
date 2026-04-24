@@ -15,6 +15,7 @@ import type {
   ProductIconContent,
   ContactSectionContent,
   PromotionCardContent,
+  SplitHeroContent,
 } from '../content'
 import TeamMembers from './TeamMembers'
 import Page from './Page'
@@ -30,6 +31,7 @@ import ProductGrid from './ProductGrid'
 import ProductIcon from './ProductIcon'
 import ContactSection from './ContactSection'
 import PromotionCard from './PromotionCard'
+import SplitHero from './SplitHero'
 
 export type ContentProps = {
   blok: Content
@@ -79,6 +81,9 @@ function Content(props: ContentProps) {
       ) : null}
       {props.blok.component === 'promotionCard' ? (
         <PromotionCard blok={props.blok as PromotionCardContent} />
+      ) : null}
+      {props.blok.component === 'splitHero' ? (
+        <SplitHero blok={props.blok as SplitHeroContent} />
       ) : null}
     </>
   )

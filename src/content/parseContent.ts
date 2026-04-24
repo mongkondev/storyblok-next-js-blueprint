@@ -44,6 +44,7 @@ import type {
   ProductIconContent,
   ContactSectionContent,
   PromotionCardContent,
+  SplitHeroContent,
 } from '.'
 
 // Recursive parsers require lazy loading
@@ -71,6 +72,7 @@ export const parseContent: Parser<Content> = lazy(() =>
     parseProductIconContent,
     parseContactSectionContent,
     parsePromotionCardContent,
+    parseSplitHeroContent,
   ),
 )
 
@@ -357,4 +359,19 @@ export const parsePromotionCardContent = object<PromotionCardContent>({
   description: withDefault(parseString, undefined),
   link: withDefault(parseLinkContent, undefined),
   badge: withDefault(parseString, undefined),
+})
+
+export const parseSplitHeroContent = object<SplitHeroContent>({
+  component: equals('splitHero'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  video_url: withDefault(parseString, undefined),
+  left_logo: withDefault(parseAssetContent, undefined),
+  left_brand: withDefault(parseString, undefined),
+  left_tagline: withDefault(parseString, undefined),
+  left_cta_text: withDefault(parseString, undefined),
+  left_cta_link: withDefault(parseLinkContent, undefined),
+  title: withDefault(parseString, undefined),
+  description: withDefault(parseString, undefined),
+  products: withDefault(array(parseProductIconContent), []),
 })
