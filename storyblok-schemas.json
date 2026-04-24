@@ -8,14 +8,14 @@
           "type": "asset",
           "filetypes": ["images"]
         },
-        "logoText": {
+        "logo_text": {
           "type": "text"
         },
-        "secondaryLogo": {
+        "secondary_logo": {
           "type": "asset",
           "filetypes": ["images"]
         },
-        "menuItems": {
+        "menu_items": {
           "type": "bloks",
           "restrict_type": "groups",
           "restrict_components": true,
@@ -37,10 +37,10 @@
           "type": "multilink",
           "allow_target_blank": true
         },
-        "hasDropdown": {
+        "has_dropdown": {
           "type": "boolean"
         },
-        "dropdownItems": {
+        "dropdown_items": {
           "type": "bloks",
           "restrict_type": "groups",
           "restrict_components": true,
@@ -82,7 +82,7 @@
           "restrict_components": true,
           "component_whitelist": ["footerColumn"]
         },
-        "bottomText": {
+        "bottom_text": {
           "type": "text"
         }
       },

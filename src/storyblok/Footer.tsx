@@ -8,6 +8,8 @@ export type FooterProps = {
 }
 
 function Footer({ blok }: FooterProps) {
+  const bottomText = blok.bottomText ?? blok.bottom_text
+
   return (
     <footer
       {...storyblokEditable(blok)}
@@ -19,9 +21,9 @@ function Footer({ blok }: FooterProps) {
             <FooterColumn key={column._uid} blok={column} />
           ))}
         </div>
-        {blok.bottomText ? (
+        {bottomText ? (
           <div className="mt-10 pt-6 border-t border-gray-200 text-center text-gray-500 text-sm">
-            {blok.bottomText}
+            {bottomText}
           </div>
         ) : null}
       </div>

@@ -12,13 +12,20 @@ export type PageProps = {
 }
 
 function Page(props: PageProps) {
+  const header = Array.isArray(props.blok.header)
+    ? props.blok.header[0]
+    : props.blok.header
+  const footer = Array.isArray(props.blok.footer)
+    ? props.blok.footer[0]
+    : props.blok.footer
+
   return (
     <div
       className="flex flex-col items-stretch min-h-screen"
       {...storyblokEditable(props.blok)}
     >
-      {props.blok.header ? (
-        <AppBar blok={props.blok.header} />
+      {header ? (
+        <AppBar blok={header} />
       ) : (
         <AppBarView />
       )}
@@ -30,8 +37,8 @@ function Page(props: PageProps) {
           />
         ))}
       </main>
-      {props.blok.footer ? (
-        <Footer blok={props.blok.footer} />
+      {footer ? (
+        <Footer blok={footer} />
       ) : (
         <FooterView />
       )}

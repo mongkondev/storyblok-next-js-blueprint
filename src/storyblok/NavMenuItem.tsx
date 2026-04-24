@@ -20,6 +20,9 @@ const hrefFromStoryLink = (slugs: string): string =>
 function NavMenuItem({ blok }: NavMenuItemProps) {
   const [open, setOpen] = useState(false)
 
+  const hasDropdown = blok.hasDropdown ?? blok.has_dropdown ?? false
+  const dropdownItems = blok.dropdownItems ?? blok.dropdown_items ?? []
+
   const linkClassName =
     'flex items-center gap-1 text-stone-900 text-sm font-semibold leading-tight py-2 px-1 hover:text-emerald-700 transition-colors'
 
@@ -27,8 +30,8 @@ function NavMenuItem({ blok }: NavMenuItemProps) {
     <div
       {...storyblokEditable(blok)}
       className="relative"
-      onMouseEnter={() => blok.hasDropdown && setOpen(true)}
-      onMouseLeave={() => blok.hasDropdown && setOpen(false)}
+      onMouseEnter={() => hasDropdown && setOpen(true)}
+      onMouseLeave={() => hasDropdown && setOpen(false)}
     >
       {blok.link?.linktype === 'url' ? (
         <Link
@@ -37,7 +40,7 @@ function NavMenuItem({ blok }: NavMenuItemProps) {
           className={linkClassName}
         >
           <span>{blok.label}</span>
-          {blok.hasDropdown ? (
+          {hasDropdown ? (
             <svg
               width="12"
               height="12"
@@ -62,7 +65,7 @@ function NavMenuItem({ blok }: NavMenuItemProps) {
           className={linkClassName}
         >
           <span>{blok.label}</span>
-          {blok.hasDropdown ? (
+          {hasDropdown ? (
             <svg
               width="12"
               height="12"
@@ -83,10 +86,10 @@ function NavMenuItem({ blok }: NavMenuItemProps) {
       ) : (
         <button
           className={linkClassName}
-          onClick={() => blok.hasDropdown && setOpen(!open)}
+          onClick={() => hasDropdown && setOpen(!open)}
         >
           <span>{blok.label}</span>
-          {blok.hasDropdown ? (
+          {hasDropdown ? (
             <svg
               width="12"
               height="12"
@@ -106,9 +109,9 @@ function NavMenuItem({ blok }: NavMenuItemProps) {
         </button>
       )}
 
-      {blok.hasDropdown && open ? (
+      {hasDropdown && open ? (
         <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-xl shadow-xl border border-gray-100 p-3 z-50 flex flex-col gap-2">
-          {blok.dropdownItems?.map((item) => (
+          {dropdownItems.map((item) => (
             <NavDropdownItem key={item._uid} blok={item} />
           ))}
         </div>

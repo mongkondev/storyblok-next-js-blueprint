@@ -14,6 +14,10 @@ export type AppBarProps = {
 function AppBar({ blok }: AppBarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const menuItems = blok.menuItems ?? blok.menu_items ?? []
+  const logoText = blok.logoText ?? blok.logo_text
+  const secondaryLogo = blok.secondaryLogo ?? blok.secondary_logo
+
   return (
     <div
       {...storyblokEditable(blok)}
@@ -26,7 +30,7 @@ function AppBar({ blok }: AppBarProps) {
             {blok.logo?.filename ? (
               <NextImage
                 src={blok.logo.filename}
-                alt={blok.logo.alt ?? blok.logoText ?? 'Logo'}
+                alt={blok.logo.alt ?? logoText ?? 'Logo'}
                 width={140}
                 height={40}
                 className="h-8 sm:h-10 w-auto object-contain"
@@ -37,7 +41,7 @@ function AppBar({ blok }: AppBarProps) {
                   TCC
                 </span>
                 <span className="text-stone-900 text-[10px] sm:text-xs font-medium tracking-wide">
-                  connect by THAI GROUP
+                  {logoText ?? 'connect by THAI GROUP'}
                 </span>
               </div>
             )}
@@ -45,16 +49,19 @@ function AppBar({ blok }: AppBarProps) {
 
           {/* Center: Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
-            {blok.menuItems?.map((item) => (
+            {menuItems.length === 0 && (
+              <span className="text-gray-400 text-sm italic">No menu items added</span>
+            )}
+            {menuItems.map((item) => (
               <NavMenuItem key={item._uid} blok={item} />
             ))}
           </nav>
 
           {/* Right: Secondary Logo + Mobile Menu Button */}
           <div className="flex items-center gap-3">
-            {blok.secondaryLogo?.filename ? (
+            {secondaryLogo?.filename ? (
               <NextImage
-                src={blok.secondaryLogo.filename}
+                src={secondaryLogo.filename}
                 alt="THAI GROUP"
                 width={80}
                 height={36}
@@ -107,7 +114,10 @@ function AppBar({ blok }: AppBarProps) {
       {/* Mobile Navigation */}
       {menuOpen ? (
         <div className="lg:hidden border-t border-gray-100 bg-white px-4 py-4 flex flex-col gap-2 shadow-lg">
-          {blok.menuItems?.map((item) => (
+          {menuItems.length === 0 && (
+            <span className="text-gray-400 text-sm italic py-2">No menu items added</span>
+          )}
+          {menuItems.map((item) => (
             <div key={item._uid} className="border-b border-gray-50 pb-2 last:border-0">
               {item.link ? (
                 <Link
@@ -129,9 +139,9 @@ function AppBar({ blok }: AppBarProps) {
                   {item.label}
                 </span>
               )}
-              {item.hasDropdown && item.dropdownItems?.length > 0 ? (
+              {(item.hasDropdown ?? item.has_dropdown) && ((item.dropdownItems ?? item.dropdown_items)?.length ?? 0) > 0 ? (
                 <div className="pl-3 mt-1 flex flex-col gap-1">
-                  {item.dropdownItems.map((dropdown) => (
+                  {(item.dropdownItems ?? item.dropdown_items)?.map((dropdown) => (
                     <Link
                       key={dropdown._uid}
                       href={

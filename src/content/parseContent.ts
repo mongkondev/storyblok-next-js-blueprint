@@ -113,13 +113,21 @@ export const parseBlocks = array(
   ),
 )
 
+const parseHeaderField = lazy(() =>
+  oneOf(parseAppBarContent, array(parseAppBarContent)),
+)
+
+const parseFooterField = lazy(() =>
+  oneOf(parseFooterContent, array(parseFooterContent)),
+)
+
 export const parsePageContent = object<PageContent>({
   component: equals('page'),
   _uid: parseString,
   _editable: optional(parseString),
-  header: withDefault(lazy(() => parseAppBarContent), undefined),
+  header: withDefault(parseHeaderField, undefined),
   body: withDefault(parseBlocks, []),
-  footer: withDefault(lazy(() => parseFooterContent), undefined),
+  footer: withDefault(parseFooterField, undefined),
 })
 
 export const parseTestimonialContent = object<TestimonialContent>({
@@ -247,7 +255,9 @@ export const parseNavMenuItemContent = object<NavMenuItemContent>({
   label: parseString,
   link: withDefault(parseLinkContent, undefined),
   hasDropdown: withDefault(equals(true), false),
+  has_dropdown: withDefault(equals(true), false),
   dropdownItems: withDefault(array(parseNavDropdownItemContent), []),
+  dropdown_items: withDefault(array(parseNavDropdownItemContent), []),
 })
 
 export const parseAppBarContent = object<AppBarContent>({
@@ -256,8 +266,11 @@ export const parseAppBarContent = object<AppBarContent>({
   _editable: optional(parseString),
   logo: withDefault(parseAssetContent, undefined),
   logoText: withDefault(parseString, undefined),
+  logo_text: withDefault(parseString, undefined),
   secondaryLogo: withDefault(parseAssetContent, undefined),
+  secondary_logo: withDefault(parseAssetContent, undefined),
   menuItems: withDefault(array(parseNavMenuItemContent), []),
+  menu_items: withDefault(array(parseNavMenuItemContent), []),
 })
 
 export const parseFooterLinkContent = object<FooterLinkContent>({
@@ -282,4 +295,5 @@ export const parseFooterContent = object<FooterContent>({
   _editable: optional(parseString),
   columns: withDefault(array(parseFooterColumnContent), []),
   bottomText: withDefault(parseString, undefined),
+  bottom_text: withDefault(parseString, undefined),
 })

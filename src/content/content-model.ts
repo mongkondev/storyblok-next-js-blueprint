@@ -38,9 +38,9 @@ export type UnknownContent = BlockContent<{
 
 export type PageContent = BlockContent<{
   component: 'page'
-  header?: AppBarContent
+  header?: AppBarContent | AppBarContent[]
   body: Content[]
-  footer?: FooterContent
+  footer?: FooterContent | FooterContent[]
 }>
 
 export type BackgroundColor =
@@ -131,16 +131,21 @@ export type AppBarContent = BlockContent<{
   component: 'appBar'
   logo?: AssetContent
   logoText?: string
+  logo_text?: string
   secondaryLogo?: AssetContent
-  menuItems: NavMenuItemContent[]
+  secondary_logo?: AssetContent
+  menuItems?: NavMenuItemContent[]
+  menu_items?: NavMenuItemContent[]
 }>
 
 export type NavMenuItemContent = BlockContent<{
   component: 'navMenuItem'
   label: string
   link?: LinkContent
-  hasDropdown: boolean
-  dropdownItems: NavDropdownItemContent[]
+  hasDropdown?: boolean
+  has_dropdown?: boolean
+  dropdownItems?: NavDropdownItemContent[]
+  dropdown_items?: NavDropdownItemContent[]
 }>
 
 export type NavDropdownItemContent = BlockContent<{
@@ -148,13 +153,14 @@ export type NavDropdownItemContent = BlockContent<{
   label: string
   description?: string
   link?: LinkContent
-  highlighted: boolean
+  highlighted?: boolean
 }>
 
 export type FooterContent = BlockContent<{
   component: 'footer'
-  columns: FooterColumnContent[]
+  columns?: FooterColumnContent[]
   bottomText?: string
+  bottom_text?: string
 }>
 
 export type FooterColumnContent = BlockContent<{
