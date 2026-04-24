@@ -1,0 +1,143 @@
+{
+  "components": [
+    {
+      "name": "appBar",
+      "display_name": "App Bar",
+      "schema": {
+        "logo": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "logoText": {
+          "type": "text"
+        },
+        "secondaryLogo": {
+          "type": "asset",
+          "filetypes": ["images"]
+        },
+        "menuItems": {
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_whitelist": ["navMenuItem"]
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    },
+    {
+      "name": "navMenuItem",
+      "display_name": "Nav Menu Item",
+      "schema": {
+        "label": {
+          "type": "text",
+          "required": true
+        },
+        "link": {
+          "type": "multilink",
+          "allow_target_blank": true
+        },
+        "hasDropdown": {
+          "type": "boolean"
+        },
+        "dropdownItems": {
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_whitelist": ["navDropdownItem"]
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    },
+    {
+      "name": "navDropdownItem",
+      "display_name": "Nav Dropdown Item",
+      "schema": {
+        "label": {
+          "type": "text",
+          "required": true
+        },
+        "description": {
+          "type": "text"
+        },
+        "link": {
+          "type": "multilink",
+          "allow_target_blank": true
+        },
+        "highlighted": {
+          "type": "boolean"
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    },
+    {
+      "name": "footer",
+      "display_name": "Footer",
+      "schema": {
+        "columns": {
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_whitelist": ["footerColumn"]
+        },
+        "bottomText": {
+          "type": "text"
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    },
+    {
+      "name": "footerColumn",
+      "display_name": "Footer Column",
+      "schema": {
+        "title": {
+          "type": "text",
+          "required": true
+        },
+        "links": {
+          "type": "bloks",
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "component_whitelist": ["footerLink"]
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    },
+    {
+      "name": "footerLink",
+      "display_name": "Footer Link",
+      "schema": {
+        "label": {
+          "type": "text",
+          "required": true
+        },
+        "link": {
+          "type": "multilink",
+          "allow_target_blank": true
+        }
+      },
+      "is_root": false,
+      "is_nestable": true
+    }
+  ],
+  "pageFields": {
+    "header": {
+      "type": "bloks",
+      "restrict_type": "groups",
+      "restrict_components": true,
+      "component_whitelist": ["appBar"],
+      "maximum": 1
+    },
+    "footer": {
+      "type": "bloks",
+      "restrict_type": "groups",
+      "restrict_components": true,
+      "component_whitelist": ["footer"],
+      "maximum": 1
+    }
+  }
+}

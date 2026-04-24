@@ -10,12 +10,6 @@ import type {
   TeamMembersContent,
   CardContent,
   ButtonContent,
-  AppBarContent,
-  NavMenuItemContent,
-  NavDropdownItemContent,
-  FooterContent,
-  FooterColumnContent,
-  FooterLinkContent,
 } from '../content'
 import TeamMembers from './TeamMembers'
 import Page from './Page'
@@ -26,12 +20,6 @@ import Hero from './Hero'
 import Tabs from './Tabs'
 import Card from './Card'
 import Button from './Button'
-import AppBar from './AppBar'
-import NavMenuItem from './NavMenuItem'
-import NavDropdownItem from './NavDropdownItem'
-import Footer from './Footer'
-import FooterColumn from './FooterColumn'
-import FooterLink from './FooterLink'
 
 export type ContentProps = {
   blok: Content
@@ -66,24 +54,6 @@ function Content(props: ContentProps) {
       ) : null}
       {props.blok.component === 'button' ? (
         <Button blok={props.blok as ButtonContent} />
-      ) : null}
-      {props.blok.component === 'appBar' ? (
-        <AppBar blok={props.blok as AppBarContent} />
-      ) : null}
-      {props.blok.component === 'navMenuItem' ? (
-        <NavMenuItem blok={props.blok as NavMenuItemContent} />
-      ) : null}
-      {props.blok.component === 'navDropdownItem' ? (
-        <NavDropdownItem blok={props.blok as NavDropdownItemContent} />
-      ) : null}
-      {props.blok.component === 'footer' ? (
-        <Footer blok={props.blok as FooterContent} />
-      ) : null}
-      {props.blok.component === 'footerColumn' ? (
-        <FooterColumn blok={props.blok as FooterColumnContent} />
-      ) : null}
-      {props.blok.component === 'footerLink' ? (
-        <FooterLink blok={props.blok as FooterLinkContent} />
       ) : null}
     </>
   )
