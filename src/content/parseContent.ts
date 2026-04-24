@@ -33,6 +33,12 @@ import type {
   TeamMembersContent,
   BackgroundColor,
   ButtonContent,
+  AppBarContent,
+  NavMenuItemContent,
+  NavDropdownItemContent,
+  FooterContent,
+  FooterColumnContent,
+  FooterLinkContent,
 } from '.'
 
 // Recursive parsers require lazy loading
@@ -49,6 +55,12 @@ export const parseContent: Parser<Content> = lazy(() =>
     parseTeamMembersContent,
     parseTeamMemberContent,
     parseButtonContent,
+    parseAppBarContent,
+    parseNavMenuItemContent,
+    parseNavDropdownItemContent,
+    parseFooterContent,
+    parseFooterColumnContent,
+    parseFooterLinkContent,
   ),
 )
 
@@ -105,7 +117,9 @@ export const parsePageContent = object<PageContent>({
   component: equals('page'),
   _uid: parseString,
   _editable: optional(parseString),
+  header: withDefault(lazy(() => parseAppBarContent), undefined),
   body: withDefault(parseBlocks, []),
+  footer: withDefault(lazy(() => parseFooterContent), undefined),
 })
 
 export const parseTestimonialContent = object<TestimonialContent>({
@@ -214,4 +228,58 @@ export const parseButtonContent = object<ButtonContent>({
   text: parseString,
   link: withDefault(parseLinkContent, undefined),
   color: withDefault(oneOf(equals('primary'), equals('secondary')), 'primary'),
+})
+
+export const parseNavDropdownItemContent = object<NavDropdownItemContent>({
+  component: equals('navDropdownItem'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  label: parseString,
+  description: withDefault(parseString, undefined),
+  link: withDefault(parseLinkContent, undefined),
+  highlighted: withDefault(equals(true), false),
+})
+
+export const parseNavMenuItemContent = object<NavMenuItemContent>({
+  component: equals('navMenuItem'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  label: parseString,
+  link: withDefault(parseLinkContent, undefined),
+  hasDropdown: withDefault(equals(true), false),
+  dropdownItems: withDefault(array(parseNavDropdownItemContent), []),
+})
+
+export const parseAppBarContent = object<AppBarContent>({
+  component: equals('appBar'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  logo: withDefault(parseAssetContent, undefined),
+  logoText: withDefault(parseString, undefined),
+  secondaryLogo: withDefault(parseAssetContent, undefined),
+  menuItems: withDefault(array(parseNavMenuItemContent), []),
+})
+
+export const parseFooterLinkContent = object<FooterLinkContent>({
+  component: equals('footerLink'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  label: parseString,
+  link: withDefault(parseLinkContent, undefined),
+})
+
+export const parseFooterColumnContent = object<FooterColumnContent>({
+  component: equals('footerColumn'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  title: parseString,
+  links: withDefault(array(parseFooterLinkContent), []),
+})
+
+export const parseFooterContent = object<FooterContent>({
+  component: equals('footer'),
+  _uid: parseString,
+  _editable: optional(parseString),
+  columns: withDefault(array(parseFooterColumnContent), []),
+  bottomText: withDefault(parseString, undefined),
 })

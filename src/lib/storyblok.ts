@@ -7,6 +7,12 @@ import Hero from '../storyblok/Hero'
 import Tabs from '../storyblok/Tabs'
 import Card from '../storyblok/Card'
 import Button from '../storyblok/Button'
+import AppBar from '../storyblok/AppBar'
+import NavMenuItem from '../storyblok/NavMenuItem'
+import NavDropdownItem from '../storyblok/NavDropdownItem'
+import Footer from '../storyblok/Footer'
+import FooterColumn from '../storyblok/FooterColumn'
+import FooterLink from '../storyblok/FooterLink'
 import { apiPlugin, storyblokInit } from '@storyblok/react/rsc'
 
 export const getStoryblokApi = storyblokInit({
@@ -22,6 +28,12 @@ export const getStoryblokApi = storyblokInit({
     hero: Hero,
     tabs: Tabs,
     button: Button,
+    appBar: AppBar,
+    navMenuItem: NavMenuItem,
+    navDropdownItem: NavDropdownItem,
+    footer: Footer,
+    footerColumn: FooterColumn,
+    footerLink: FooterLink,
   },
   apiOptions: {
     /** Set the correct region for your space. Learn more: https:/www.storyblok.com/docs/packages/storyblok-js#example-region-parameter */
